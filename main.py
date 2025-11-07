@@ -95,7 +95,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				owner_id = 7805235233  #
 
 				# Card ရလာဒ်ကို Case-insensitive ဖြင့် စစ်ဆေးမယ်
-				card_info = f"💳 Card: {cc.strip()} \n📝 Response: Hit $1.00🔥"
+				card_info = f"💳 Card: {cc.strip()}"
 
 				if "succeeded" in last:
 				    # "thank" "Thank" "THANK" ပါရင် thank_cards.txt ထဲ သိမ်း
