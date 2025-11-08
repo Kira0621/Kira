@@ -120,7 +120,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 #Hit_Sender
 				
 				print(last)
-				if 'succeeded' in last:
+				if 'Payment processed successfully' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -130,7 +130,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				elif 'security code is incorrect' in last or 'security code is invalid' in last:
 					ccn += 1
 					
-				elif 'insufficient funds' in last:
+				elif 'Not sufficient funds' in last:
 					msg = f'''			
 𝐂𝐀𝐑𝐃: <code>{cc}</code>
 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Insufficient funds 🔥</code>
