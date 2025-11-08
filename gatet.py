@@ -12,6 +12,7 @@ def Tele(ccx):
 	
 	random_amount1 = random.randint(1, 9)
 	random_amount2 = random.randint(1, 99)
+	random_amount3 = random.randint(1, 999)
 	
 	headers = {
 	    'authority': 'api.payway.com.au',
@@ -69,8 +70,8 @@ def Tele(ccx):
 	    'nonce': '1e1e4c8be6',
 	    'amount': f'{random_amount1}.{random_amount2}',
 	    'description': 'TEST',
-	    'customer_number': '1',
-	    'order_number': '1',
+	    'customer_number': f'{random_amount3}',
+	    'order_number': f'{random_amount3}',
 	    'card_token': f'{tok}',
 	}
 	
