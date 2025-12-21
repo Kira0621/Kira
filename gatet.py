@@ -10,10 +10,6 @@ def Tele(ccx):
 		yy = yy.split("20")[1]
 	r = requests.session()
 	
-	random_amount1 = random.randint(1, 9)
-	random_amount2 = random.randint(1, 99)
-	random_amount3 = random.randint(1, 999)
-	
 	headers = {
 	    'authority': 'api.payway.com.au',
 	    'accept': 'application/json',
