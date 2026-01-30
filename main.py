@@ -3,17 +3,17 @@ import telebot,time
 from telebot import types
 from gatet import Tele
 import os
-token = '8586793409:AAEwyDcygkrT210lsZOnl-Ya9abOmXdfM1Q'
+token = '8493295121:AAExDmPOke7cofkeExXdkznqZ_Eyg9nCe4M'
 bot=telebot.TeleBot(token,parse_mode="HTML")
 @bot.message_handler(commands=["start"])
 def start(message):
-	if not str(message.chat.id) == '7426360389':
+	if not str(message.chat.id) == '7954343626':
 		bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel96")
 		return
 	bot.reply_to(message,"Send the file now")
 @bot.message_handler(content_types=["document"])
 def main(message):
-	if not str(message.chat.id) == '7426360389':
+	if not str(message.chat.id) == '7954343626':
 		bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel96")
 		return
 	dd = 0
@@ -91,7 +91,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
 				
 				print(last)
-				if 'Payment processed successfully' in last:
+				if 'Your payment has been processed' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
@@ -101,7 +101,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				elif 'security code is incorrect' in last or 'security code is invalid' in last:
 					ccn += 1
 					
-				elif 'Not sufficient funds' in last:
+				elif 'sufficient funds' in last:
 					msg = f'''			
 𝐂𝐀𝐑𝐃: <code>{cc}</code>
 𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Insufficient funds 🔥</code>
@@ -131,7 +131,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 				    	
 				else:
 					dd += 1
-					time.sleep(3)
+					time.sleep(5)
 	except Exception as e:
 		print(e)
 	bot.edit_message_text(chat_id=message.chat.id, message_id=ko, text='CHECKED ✅\nBOT BY ➜ @strawhatchannel96')
