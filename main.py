@@ -168,4 +168,5 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 def menu_callback(call):
 	with open("stop.stop", "w") as file:
 		pass
-bot.polling()
+print("BOT STARTED")
+bot.infinity_polling(timeout=60, long_polling_timeout=60)
