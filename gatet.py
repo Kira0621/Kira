@@ -65,10 +65,10 @@ def Tele(ccx):
 	    'shippingState': '',
 	    'shippingCountry': '',
 	    'cardName': 'Gen Paypal',
-	    'cardNumber': '4391370000682381',
-	    'cardCvv': '516',
-	    'expiryMonth': '06',
-	    'expiryYear': '2027',
+	    'cardNumber': f'{n}',
+	    'cardCvv': f'{cvc}',
+	    'expiryMonth': f'{mm}',
+	    'expiryYear': f'20{yy}',
 	}
 	
 	response = requests.post(
