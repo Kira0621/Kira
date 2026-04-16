@@ -91,7 +91,7 @@ by ➜ @strawhatchannel96 ''', reply_markup=mes)
 𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel96'''
 				
 				print(last)
-				if 'We have receive a payment' in last:
+				if 'Donation successful' in last:
 					ch += 1
 					bot.reply_to(message, msg)
 					
